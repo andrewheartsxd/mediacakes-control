@@ -7,11 +7,9 @@ const rl = readline.createInterface({
 });
 
 let smartcast = require('vizio-smart-cast');
-smartcast.discover((device) => {
-  console.log('Found: ', device);
+//smartcast.discover((device) => {
+  //console.log('Found: ', device);
 
-  let ip = device.ip;
-  let tv = new smartcast(ip);
 
   //wol.wake('', function (err, res) {
     //if (err) {
@@ -32,4 +30,4 @@ smartcast.discover((device) => {
     //});
   //});
 
-});
+//});
