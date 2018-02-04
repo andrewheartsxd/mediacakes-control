@@ -21,10 +21,10 @@ function firstRun(smartcast) {
           const writeConfig = require('./writeConfig')({ ip: ip, authToken: authToken });
         });
         rl.close();
+        console.log('Run app.js again to toggle power');
       });
     });
   });
 }
 
 module.exports = firstRun;
-
