@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "node-arp": "^1.0.6",
     "vizio-smart-cast": "^1.1.6",
     "wol": "^1.0.3"
   },
