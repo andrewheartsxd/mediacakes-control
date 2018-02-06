@@ -4,6 +4,19 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+const writeConfig = require('./writeConfig.js');
+
+function getMAC(ip) {
+  return new Promise(function (resolve, reject) {
+    arp.getMAC(ip, function (err, mac) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(mac)
+      }
+    });
+  });
+}
 
 function firstRun(smartcast) {
   // discover smartcast device
@@ -18,17 +31,11 @@ function firstRun(smartcast) {
         tv.pairing.pair(answer).then((response) => {
           let authToken = response.ITEM.AUTH_TOKEN;
           console.log('Auth token: ' + authToken);
-          let macAddress = arp.getMAC(ip, function (err, mac) {
-            if (err) {
-              console.log('error getting mac:', err);
-            } else {
-              console.log('mac address:', mac);
-              return mac;
-            }
-          });
-          // write config file
-          const writeConfig = require('./writeConfig')({ ip: ip, authToken: authToken, macAddress: macAddress});
+        }).then(function () {
+          console.log('hi!');
         });
+        //.then(writeConfig({ ip: ip, authToken: authToken, macAddress: macAddress}));
+          // write config file
         rl.close();
         console.log('Run app.js again to toggle power');
       });
