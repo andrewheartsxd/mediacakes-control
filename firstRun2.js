@@ -29,7 +29,7 @@ function firstRun(smartcast) {
       pairDevice(tv, ip);
     }
   }, (err) => {
-    console.log('error discovering device');
+    console.log("couldn't discover device");
   });
 }
 
@@ -41,7 +41,7 @@ function pairDevice(tv, ip) {
         rl.close();
         let authToken = response.ITEM.AUTH_TOKEN;
         let configObject = { ip: ip, authToken: authToken };
-        console.log('configObject', configObject);
+        //console.log('configObject', configObject);
         return configObject;
       })
       // get MAC address
@@ -56,8 +56,5 @@ function pairDevice(tv, ip) {
     console.log(err);
   });
 }
-
-
-
 
 module.exports = firstRun;
