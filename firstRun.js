@@ -1,22 +1,10 @@
-const arp = require('node-arp');
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+const getMAC = require('./getMAC.js');
 const writeConfig = require('./writeConfig.js');
-
-function getMAC(ip) {
-  return new Promise(function (resolve, reject) {
-    arp.getMAC(ip, function (err, mac) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(mac)
-      }
-    });
-  });
-}
 
 function firstRun(smartcast) {
   // discover smartcast device
@@ -30,14 +18,18 @@ function firstRun(smartcast) {
       rl.question('Enter PIN:', (answer) => {
         tv.pairing.pair(answer).then((response) => {
           let authToken = response.ITEM.AUTH_TOKEN;
-          console.log('Auth token: ' + authToken);
-        }).then(function () {
-          console.log('hi!');
-        });
-        //.then(writeConfig({ ip: ip, authToken: authToken, macAddress: macAddress}));
+          let configObject = { ip: ip, authToken: authToken };
+          console.log('configObject', configObject);
+          return configObject;
+        })
+          // get MAC address
+          .then(getMAC)
           // write config file
+          .then(writeConfig)
+          .then(() => {
+            console.log('Run app.js again to toggle power');
+          });
         rl.close();
-        console.log('Run app.js again to toggle power');
       });
     });
   }, (err) => {
