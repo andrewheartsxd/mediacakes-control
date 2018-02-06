@@ -3,15 +3,17 @@ const smartcast = require('vizio-smart-cast');
 const togglePower = require('./togglePower.js');
 
 process.on('unhandledRejection', (reason) => {
-      console.log('Reason: ' + reason);
+  console.log('Reason: ' + reason);
 });
 
 try {
   // if config file exists, use config file to toggle power
+  console.log('hihi');
   const config = require('./config.json');
+  console.log('hihi2');
   let tv = new smartcast(config.ip, config.authToken);
   // send wake on lan
-  wol.wake(config.macAddress, function (err, res) {
+  wol.wake(config.mac, function (err, res) {
     if (err) {
       console.log('error sending wol:', err);
     } else {

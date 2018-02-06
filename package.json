@@ -8,7 +8,8 @@
     "vizio-smart-cast": "^1.1.6",
     "wol": "^1.0.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+  },
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
