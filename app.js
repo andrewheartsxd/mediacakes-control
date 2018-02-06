@@ -8,9 +8,7 @@ process.on('unhandledRejection', (reason) => {
 
 try {
   // if config file exists, use config file to toggle power
-  console.log('hihi');
   const config = require('./config.json');
-  console.log('hihi2');
   let tv = new smartcast(config.ip, config.authToken);
   // send wake on lan
   wol.wake(config.mac, function (err, res) {
