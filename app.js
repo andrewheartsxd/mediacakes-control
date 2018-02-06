@@ -17,5 +17,5 @@ try {
 } catch (ex) {
   // otherwise, run firstRun.js and create config file, then toggle power
   console.log('First run, creating config file...');
-  require('./firstRun.js')(smartcast);
+  require('./firstRun2.js')(smartcast);
 }

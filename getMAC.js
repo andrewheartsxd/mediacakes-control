@@ -5,8 +5,8 @@ function getMAC(configObject) {
   return new Promise(function (resolve, reject) {
     arp.getMAC(ip, function (err, mac) {
       if (err) {
-        console.log('error', err);
-        reject(err);
+        console.log('error getting MAC address');
+        reject();
       } else {
         configObject.mac = mac;
         console.log('configObject', configObject);
