@@ -3,6 +3,9 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+const getMAC = require('./getMAC.js');
+const writeConfig = require('./writeConfig.js');
+
 
 module.exports = function pairDevice(tv, ip) {
   // initiate pairing

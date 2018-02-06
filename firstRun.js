@@ -1,6 +1,3 @@
-const getMAC = require('./getMAC.js');
-const writeConfig = require('./writeConfig.js');
-
 function firstRun(smartcast) {
   // discover smartcast device
   const discoverDevice = require('./discoverDevice.js');
