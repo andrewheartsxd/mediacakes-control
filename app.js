@@ -2,6 +2,10 @@ const wol = require('wol');
 const smartcast = require('vizio-smart-cast');
 const togglePower = require('./togglePower.js');
 
+process.on('unhandledRejection', (reason) => {
+      console.log('Reason: ' + reason);
+});
+
 try {
   // if config file exists, use config file to toggle power
   const config = require('./config.json');
@@ -15,7 +19,7 @@ try {
     }
   });
 } catch (ex) {
-  // otherwise, run firstRun.js and create config file, then toggle power
+  // otherwise, run firstRun.js and create config file
   console.log('First run, creating config file...');
-  require('./firstRun2.js')(smartcast);
+  require('./firstRun.js')(smartcast);
 }
