@@ -1,6 +1,7 @@
 const wol = require('wol');
 const smartcast = require('vizio-smart-cast');
 const togglePower = require('./togglePower.js');
+const switchInput = require('./switchInput.js');
 
 process.on('unhandledRejection', (reason) => {
   console.log('Reason: ' + reason);
@@ -15,7 +16,7 @@ try {
     if (err) {
       console.log('error sending wol:', err);
     } else {
-      togglePower(tv);
+      togglePower(tv, switchInput);
     }
   });
 } catch (ex) {
